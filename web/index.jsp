@@ -146,6 +146,32 @@
                     }
                     return resL;
                 }
+//-- 5 --//////////-- Hobbies --/////////
+            public int insertHobbies(String firstH,String secondH,String thirdH, int id){
+                    int resH = 0;
+
+                    try {
+                        courses = connection.prepareStatement("insert into mycvproject.hobby (hobbyName,person_idperson) value(?,?)" ) ;
+                            courses.setInt(2 , id) ;
+                            if(firstH != "" ){
+                                 courses.setString(1 , firstH);
+                                 courses.executeUpdate();
+                            }
+                            if(secondH != "" ){
+                                courses.setString(1 , secondH);
+                                courses.executeUpdate();
+                            }
+                            if(thirdH != "" ){
+                                courses.setString(1 , thirdH);
+                                courses.executeUpdate();
+                            }
+                        }
+                    catch (SQLException ex) {
+
+                        ex.printStackTrace();
+                    }
+                    return resH;
+                }
 //-- 6 --//////////-- Trainings --/////////
             public int insertTrainings(String firstT,String secondT,String thirdT, int id){
                     int resT = 0;
@@ -172,6 +198,33 @@
                     }
                     return resT;
                 }
+//-- 7 --//////////-- Trainings Sites --/////////
+            public int insertTrainingSite(String firstS,String secondS,String thirdS, int id){
+                    int resS = 0;
+
+                    try {
+                        courses = connection.prepareStatement("insert into mycvproject.site (siteAddress,person_idperson) value(?,?)" ) ;
+                            courses.setInt(2 , id) ;
+                            if(firstS != "" ){
+                                 courses.setString(1 , firstS);
+                                 courses.executeUpdate();
+                            }
+                            if(secondS != "" ){
+                                courses.setString(1 , secondS);
+                                courses.executeUpdate();
+                            }
+                            if(thirdS != "" ){
+                                courses.setString(1 , thirdS);
+                                courses.executeUpdate();
+                            }
+                        }
+                    catch (SQLException ex) {
+
+                        ex.printStackTrace();
+                    }
+                    return resS;
+                }
+            }
         %>
         <%
             int result = 0;
@@ -204,6 +257,10 @@
                 String secondL = new String();
                 String thirdL = new String();
                 
+                //to insert Hobbies
+                String firstH = new String();
+                String secondH = new String();
+                String thirdH = new String();
                 
                 
                 //to insert Training
@@ -211,6 +268,12 @@
                 String secondT = new String();
                 String thirdT = new String();
                 
+                
+                //to insert Sites
+                String firstS = new String();
+                String secondS = new String();
+                String thirdS = new String();
+
                 //parsing/getting  data
                 //Person
                 if (request.getParameter("first") != "") {
@@ -262,6 +325,15 @@
                     thirdL = request.getParameter("thirdL");
                 }
                 // Hobbies
+                if (request.getParameter("firstH") != "") {
+                    firstH = request.getParameter("firstH");
+                }
+                if (request.getParameter("secondH") != "") {
+                    secondH = request.getParameter("secondH");
+                }
+                if (request.getParameter("thirdH") != "") {
+                    thirdH = request.getParameter("thirdH");
+                }
                 // Trainings
                 if (request.getParameter("firstT") != "") {
                     firstT = request.getParameter("firstT");
@@ -272,7 +344,16 @@
                 if (request.getParameter("thirdT") != "") {
                     thirdT = request.getParameter("thirdT");
                 }
-
+                // Trainings Sites
+                if (request.getParameter("firstS") != "") {
+                    firstS = request.getParameter("firstS");
+                }
+                if (request.getParameter("secondS") != "") {
+                    secondS = request.getParameter("secondS");
+                }
+                if (request.getParameter("thirdS") != "") {
+                    thirdS = request.getParameter("thirdS");
+                }
 
                 CV person = new CV();
                 
@@ -280,7 +361,9 @@
                 resC = person.insertCourses(firstC, secondC, thirdC, person.person_id) ;
                 resP = person.insertProjects(firstP, secondP, thirdP,person.person_id);
                 resL = person.insertLanguages(firstL, secondL, thirdL,person.person_id);
+                resH = person.insertHobbies(firstH, secondH, thirdH,person.person_id);
                 resT = person.insertTrainings(firstT, secondT, thirdT,person.person_id);
+                resS = person.insertTrainingSite(firstS, secondS, thirdS,person.person_id);
             }
         %>
     <center>
@@ -342,6 +425,13 @@
                     <td><input class ="tb" type="text" name="firstL" value="" size="50" />
                         <input class ="tb" type="text" name="secondL" value="" size="50" />
                         <input class ="tb" type="text" name="thirdL" value="" size="50" /></td>
+                </tr>
+
+                <tr>
+                    <td>Hobbies:</td>
+                    <td><input class ="tb" type="text" name="firstH" value="" size="50" />
+                        <input class ="tb" type="text" name="secondH" value="" size="50" />
+                        <input class ="tb" type="text" name="thirdH" value="" size="50" /></td>
                 </tr>
                 
                 <tr>
