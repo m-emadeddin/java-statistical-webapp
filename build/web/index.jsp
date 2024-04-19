@@ -9,7 +9,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>my CV Project</title>
     </head>
-    <body onload="displayResults()">
+    <body onload="submitForm()">
 
         <h1 id="nav" >MY CV PROJECT</h1>
         <%!
@@ -452,12 +452,10 @@
 
     <SCRIPT LANGUAGE="JavaScript">
         // Function to handle the form submission and potential redirection
-       function displayResults() {
-           // Prevent the default form submission
-           console.log("Function called. Hidden value:", document.myForm.hidden.value);
+       function submitForm() {;
            // Check the value of the hidden input and redirect if it's "1"
            if (document.myForm.hidden.value == "1") {
-               window.location.href = "aggregates.jsp"; // Redirect to another JSP page
+               window.location.href = "task.jsp"; // Redirect to another JSP page
            }
        }
 
