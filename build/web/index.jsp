@@ -66,19 +66,19 @@
                     int resC = 0;
 
                     try {
-                        if (firstC != null) {
+                        if (firstC != "") {
                             PreparedStatement coursesFirst = connection.prepareStatement("insert into mycvproject.course (courseName,person_idperson) value(?,?)");
                             coursesFirst.setString(1, firstC);
                             coursesFirst.setInt(2, id);
                             resC += coursesFirst.executeUpdate();
                         }
-                        if (secondC != null) {
+                        if (secondC != "") {
                             PreparedStatement coursesSecond = connection.prepareStatement("insert into mycvproject.course (courseName,person_idperson) value(?,?)");
                             coursesSecond.setString(1, secondC);
                             coursesSecond.setInt(2, id);
                             resC += coursesSecond.executeUpdate();
                         }
-                        if (thirdC != null) {
+                        if (thirdC != "") {
                             PreparedStatement coursesThird = connection.prepareStatement("insert into mycvproject.course (courseName,person_idperson) value(?,?)");
                             coursesThird.setString(1, thirdC);
                             coursesThird.setInt(2, id);
@@ -97,15 +97,15 @@
                     try {
                         courses = connection.prepareStatement("insert into mycvproject.project (projectName,person_idperson) value(?,?)" ) ;
                             courses.setInt(2 , id) ;
-                            if(firstP != null ){
+                            if(firstP != "" ){
                                  courses.setString(1 , firstP);
                                  courses.executeUpdate();
                             }
-                            if(secondP != null ){
+                            if(secondP != "" ){
                                 courses.setString(1 , secondP);
                                 courses.executeUpdate();
                             }
-                            if(thirdP != null ){
+                            if(thirdP != "" ){
                                 courses.setString(1 , thirdP);
                                 courses.executeUpdate();
                             }
@@ -146,32 +146,6 @@
                     }
                     return resL;
                 }
-//-- 5 --//////////-- Hobbies --/////////
-            public int insertHobbies(String firstH,String secondH,String thirdH, int id){
-                    int resH = 0;
-
-                    try {
-                        courses = connection.prepareStatement("insert into mycvproject.hobby (hobbyName,person_idperson) value(?,?)" ) ;
-                            courses.setInt(2 , id) ;
-                            if(firstH != null ){
-                                 courses.setString(1 , firstH);
-                                 courses.executeUpdate();
-                            }
-                            if(secondH != null ){
-                                courses.setString(1 , secondH);
-                                courses.executeUpdate();
-                            }
-                            if(thirdH != null ){
-                                courses.setString(1 , thirdH);
-                                courses.executeUpdate();
-                            }
-                        }
-                    catch (SQLException ex) {
-
-                        ex.printStackTrace();
-                    }
-                    return resH;
-                }
 //-- 6 --//////////-- Trainings --/////////
             public int insertTrainings(String firstT,String secondT,String thirdT, int id){
                     int resT = 0;
@@ -179,15 +153,15 @@
                     try {
                         courses = connection.prepareStatement("insert into mycvproject.training (trainingName,person_idperson) value(?,?)" ) ;
                             courses.setInt(2 , id) ;
-                            if(firstT != null ){
+                            if(firstT != "" ){
                                  courses.setString(1 , firstT);
                                  courses.executeUpdate();
                             }
-                            if(secondT != null ){
+                            if(secondT != "" ){
                                 courses.setString(1 , secondT);
                                 courses.executeUpdate();
                             }
-                            if(thirdT != null ){
+                            if(thirdT != "" ){
                                 courses.setString(1 , thirdT);
                                 courses.executeUpdate();
                             }
@@ -198,33 +172,6 @@
                     }
                     return resT;
                 }
-//-- 7 --//////////-- Trainings Sites --/////////
-            public int insertTrainingSite(String firstS,String secondS,String thirdS, int id){
-                    int resS = 0;
-
-                    try {
-                        courses = connection.prepareStatement("insert into mycvproject.site (siteAddress,person_idperson) value(?,?)" ) ;
-                            courses.setInt(2 , id) ;
-                            if(firstS != null ){
-                                 courses.setString(1 , firstS);
-                                 courses.executeUpdate();
-                            }
-                            if(secondS != null ){
-                                courses.setString(1 , secondS);
-                                courses.executeUpdate();
-                            }
-                            if(thirdS != null ){
-                                courses.setString(1 , thirdS);
-                                courses.executeUpdate();
-                            }
-                        }
-                    catch (SQLException ex) {
-
-                        ex.printStackTrace();
-                    }
-                    return resS;
-                }
-            }
         %>
         <%
             int result = 0;
@@ -257,10 +204,6 @@
                 String secondL = new String();
                 String thirdL = new String();
                 
-                //to insert Hobbies
-                String firstH = new String();
-                String secondH = new String();
-                String thirdH = new String();
                 
                 
                 //to insert Training
@@ -268,92 +211,68 @@
                 String secondT = new String();
                 String thirdT = new String();
                 
-                
-                //to insert Sites
-                String firstS = new String();
-                String secondS = new String();
-                String thirdS = new String();
-
                 //parsing/getting  data
                 //Person
-                if (request.getParameter("first") != null) {
+                if (request.getParameter("first") != "") {
                     firstName = request.getParameter("first");
                 }
-                if (request.getParameter("last") != null) {
+                if (request.getParameter("last") != "") {
                     lastName = request.getParameter("last");
                 }
-                if (request.getParameter("city") != null) {
+                if (request.getParameter("city") != "") {
                     city = request.getParameter("city");
                 }
-                if (request.getParameter("address") != null) {
+                if (request.getParameter("address") != "") {
                     address = request.getParameter("address");
                 }
-                if (request.getParameter("country") != null) {
+                if (request.getParameter("country") != "") {
                     country = request.getParameter("country");
                 }
-                if (request.getParameter("email") != null) {
+                if (request.getParameter("email") != "") {
                     email = request.getParameter("email");
                 }
                 //Courses
-                if (request.getParameter("firstC") != null) {
+                if (request.getParameter("firstC") != "") {
                     firstC = request.getParameter("firstC");
                 }
-                if (request.getParameter("secondC") != null) {
+                if (request.getParameter("secondC") != "") {
                     secondC = request.getParameter("secondC");
                 }
-                if (request.getParameter("thirdC") != null) {
+                if (request.getParameter("thirdC") != "") {
                     thirdC = request.getParameter("thirdC");
                 }
                 //projects
-                if (request.getParameter("firstP") != null) {
+                if (request.getParameter("firstP") != "") {
                     firstP = request.getParameter("firstP");
                 }
-                if (request.getParameter("secondP") != null) {
+                if (request.getParameter("secondP") != "") {
                     secondP = request.getParameter("secondP");
                 }
-                if (request.getParameter("thirdP") != null) {
+                if (request.getParameter("thirdP") != "") {
                     thirdP = request.getParameter("thirdP");
                 }
                 //Languages
-                if (request.getParameter("firstL") != null) {
+                if (request.getParameter("firstL") != "") {
                     firstL = request.getParameter("firstL");
                 }
-                if (request.getParameter("secondL") != null) {
+                if (request.getParameter("secondL") != "") {
                     secondL = request.getParameter("secondL");
                 }
-                if (request.getParameter("thirdL") != null) {
+                if (request.getParameter("thirdL") != "") {
                     thirdL = request.getParameter("thirdL");
                 }
                 // Hobbies
-                if (request.getParameter("firstH") != null) {
-                    firstH = request.getParameter("firstH");
-                }
-                if (request.getParameter("secondH") != null) {
-                    secondH = request.getParameter("secondH");
-                }
-                if (request.getParameter("thirdH") != null) {
-                    thirdH = request.getParameter("thirdH");
-                }
                 // Trainings
-                if (request.getParameter("firstT") != null) {
+                if (request.getParameter("firstT") != "") {
                     firstT = request.getParameter("firstT");
                 }
-                if (request.getParameter("secondT") != null) {
+                if (request.getParameter("secondT") != "") {
                     secondT = request.getParameter("secondT");
                 }
-                if (request.getParameter("thirdT") != null) {
+                if (request.getParameter("thirdT") != "") {
                     thirdT = request.getParameter("thirdT");
                 }
-                // Trainings Sites
-                if (request.getParameter("firstS") != null) {
-                    firstS = request.getParameter("firstS");
-                }
-                if (request.getParameter("secondS") != null) {
-                    secondS = request.getParameter("secondS");
-                }
-                if (request.getParameter("thirdS") != null) {
-                    thirdS = request.getParameter("thirdS");
-                }
+
 
                 CV person = new CV();
                 
@@ -361,9 +280,7 @@
                 resC = person.insertCourses(firstC, secondC, thirdC, person.person_id) ;
                 resP = person.insertProjects(firstP, secondP, thirdP,person.person_id);
                 resL = person.insertLanguages(firstL, secondL, thirdL,person.person_id);
-                resH = person.insertHobbies(firstH, secondH, thirdH,person.person_id);
                 resT = person.insertTrainings(firstT, secondT, thirdT,person.person_id);
-                resS = person.insertTrainingSite(firstS, secondS, thirdS,person.person_id);
             }
         %>
     <center>
@@ -426,25 +343,12 @@
                         <input class ="tb" type="text" name="secondL" value="" size="50" />
                         <input class ="tb" type="text" name="thirdL" value="" size="50" /></td>
                 </tr>
-
-                <tr>
-                    <td>Hobbies:</td>
-                    <td><input class ="tb" type="text" name="firstH" value="" size="50" />
-                        <input class ="tb" type="text" name="secondH" value="" size="50" />
-                        <input class ="tb" type="text" name="thirdH" value="" size="50" /></td>
-                </tr>
                 
                 <tr>
                     <td>Training:</td>
                     <td><input class ="tb" type="text" name="firstT" value="" size="50" />
                         <input class ="tb" type="text" name="secondT" value="" size="50" />
                         <input class ="tb" type="text" name="thirdT" value="" size="50" /></td>
-                </tr>
-                <tr>
-                    <td>Training Sites:</td>
-                    <td><input class ="tb" type="text" name="firstS" value="" size="50" />
-                        <input class ="tb" type="text" name="secondS" value="" size="50" />
-                        <input class ="tb" type="text" name="thirdS" value="" size="50" /></td>
                 </tr>
 
                 </tbody>

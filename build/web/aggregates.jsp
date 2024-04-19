@@ -125,9 +125,9 @@
                     
                     // GET MOST ACTIVE PEOPLE
                     String mostActiveQuery = "SELECT p.idperson, p.fName, p.lName, " +
-                                             " COUNT(DISTINCT l.idlanguage) AS language_count, " +
-                                             "COUNT(DISTINCT t.idapp) AS training_count, " +
-                                             " COUNT(DISTINCT c.idcourse) AS course_count " +
+                                             " COUNT(DISTINCT CASE WHEN l.idlanguage IS NOT NULL AND l.idlanguage != '' THEN l.idlanguage END) AS language_count, " +
+                                             " COUNT(DISTINCT CASE WHEN t.idapp IS NOT NULL AND t.idapp != '' THEN t.idapp END) AS training_count, " +
+                                             " COUNT(DISTINCT CASE WHEN c.idcourse IS NOT NULL AND c.idcourse != '' THEN c.idcourse END) AS course_count " +
                                              " FROM person p LEFT JOIN language l ON p.idperson = l.person_idperson" +
                                              " LEFT JOIN training t ON p.idperson = t.person_idperson " +
                                              "LEFT JOIN course c ON p.idperson = c.person_idperson " +
